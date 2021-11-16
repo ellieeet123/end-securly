@@ -15,4 +15,5 @@ a.width=w;
 a.height=h;
 </scr`+`ipt></body></html>
 `;
+document.write('');
 document.write(c);
