@@ -13,7 +13,7 @@ div.contentEditable = true;
 div.style.color = '#fff';
 document.body.appendChild(div);
 window.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) { //enter
+  if (event.keyCode === 13) { /*enter*/
     event.preventDefault();
     var command = document.getElementById('ellieeet_console').textContent;
     history.unshift(command);
@@ -21,7 +21,7 @@ window.addEventListener("keyup", function(event) {
     historyIndex = 0;
     eval(command);
   }
-  else if (event.keyCode === 38) { //up arrow
+  else if (event.keyCode === 38) { /*up arrow*/
     document.getElementById('ellieeet_console').textContent = history[historyIndex];
     historyIndex = historyIndex + 1;
   }
