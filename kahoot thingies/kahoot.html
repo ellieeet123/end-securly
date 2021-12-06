@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <script>
+            var Kahoot = require("https://raw.githubusercontent.com/theusaf/kahoot.js-updated/2c8fc17d4fe22c6a525d9c9fd3dc9c6109879d0d/src/kahoot.js");
+            var client = new Kahoot;
+            let PIN = 0;
+            alert("joining game...");
+            client.join(PIN, "testing",["a","b","c","d"]).then(a=>{
+            alert(a);
+            }).catch(e=>{
+            alert(e);
+            });
+            client.on("Joined", () => {
+            alert("joined. leaving..");
+            setTimeout(()=>{client.leave();},5000);
+            });
+        </script>
+    </body>
+</html>
