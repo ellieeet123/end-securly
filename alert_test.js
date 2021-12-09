@@ -1,5 +1,5 @@
 javascript:
-window.alert = function(content, closeMessage) {
+function showMessage (content, closeMessage) {
   var gray = document.createElement('div');
   var message = document.createElement('div');
   var body = document.body;
@@ -33,5 +33,5 @@ window.alert = function(content, closeMessage) {
   document.querySelector("#message h3").style.color = textColor;
   document.querySelector("message p").style.color = textColor;
   document.querySelector("message a").style.color = linkColor;
-}
-alert('<h1>Test</h1><br><p>hi</p>','Close');
+};
+showMessage('<h1>Test</h1><br><p>hi</p>','Close');
