@@ -10,13 +10,13 @@ function showMessage (content, closeMessage) {
   var textColor = '#000000';
   var linkColor = '#ff0000';
   gray.style = `
-    width: `+width+`px;
-    height: `+height+`px;
     background: rgba(60,60,60,0.3);
     position: fixed;
     top: 0px;
     left: 0px;
   `;
+  gray.style.width =  width.toString()+'px';
+  gray.style.height = height.toString()+'px';
   message.style = `
     width: `+ Math.round(width/3) +`px;
     height: `+ height-20 +`px;
@@ -25,6 +25,8 @@ function showMessage (content, closeMessage) {
     right: 10px;
     top: 10px;
   `;
+  message.style.width =  (Math.round(width/3)).toString()+'px';
+  message.style.height = (height-20).toString()+'px';
   gray.id = 'gray';
   message.id = 'message';
   message.innerHTML = content;
