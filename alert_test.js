@@ -27,13 +27,20 @@ function showMessage (content, closeMessage) {
   `;
   message.style.width =  (Math.round(width/3)).toString()+'px';
   message.style.height = (height-20).toString()+'px';
+  message.style.padding = '10px';
+  message.style.borderRadius = '4px';
   gray.id = 'gray';
   message.id = 'message';
   message.innerHTML = content;
   document.body.appendChild(gray);
   document.body.appendChild(message);
-  document.querySelector("#message h3").style.color = textColor;
-  document.querySelector("message p").style.color = textColor;
-  document.querySelector("message a").style.color = linkColor;
+  document.querySelector("#message h1").style.color = textColor;
+  document.querySelector("#message p").style.color = textColor;
+  document.querySelector("#message a").style.color = linkColor;
 };
-showMessage('<h1>Test</h1><br><p>hi</p>','Close');
+showMessage(`
+  <h1>Test</h1>
+  <br>
+  <p>hi</p>
+  <a href="">words</a>
+`,'Close');
