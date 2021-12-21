@@ -6,8 +6,8 @@
 javascript:
 function getRandStr(){
   var values = 'abcdefghijklmnopqrstuvwxyz1234567890'.split('');
-  var output = '';
-  for (var i = 0; i < 16;i++) {
+  var output = values[Math.floor(Math.random()*25)];
+  for (var i = 0; i < 15;i++) {
     output = output + values[Math.floor(Math.random()*values.length)];
   }
   return output;
@@ -15,9 +15,10 @@ function getRandStr(){
 
 alert(getRandStr());
 
-/*
-cy3u3kx1wg8o1rj2
-hx9e06y07oekgvq0
+/*  pre-generated:
+
+cy3u3kx1wg8o1rj2 [CURRENT - MAIN]
+hx9e06y07oekgvq0 [CURRENT - PRINGLES]
 ui4b9x03syw0ka1j
 ypzvq1aexoonl867
 bmrxj5t98igyu0xx

