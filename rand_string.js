@@ -1,4 +1,7 @@
-/* [BOOKMARKLET] generates 16 character random string (ignore this pls) */
+/* [BOOKMARKLET] generates 16 character random string (ignore this pls)
+   Used to generate names for heroku corrosion apps
+   
+*/
 
 javascript:
 function getRandStr(){
@@ -13,12 +16,12 @@ function getRandStr(){
 alert(getRandStr());
 
 /*
-2cy3u3kx1wg8o1rj
+cy3u3kx1wg8o1rj2
 hx9e06y07oekgvq0
 ui4b9x03syw0ka1j
-867ypzvq1aexoonl
+ypzvq1aexoonl867
 bmrxj5t98igyu0xx
 s36wcp57cb7ru7p4
-7gn6ih7aa0i5rdih
+gn6ih7aa0i5rdih7
 cc8o9ffyjh3xvrbu
 */
