@@ -4,6 +4,7 @@ small collection of scripts i use to help battle the evil extention named securl
 
 if you are just here to get the unblocker bookmarklet, simply select everything in the codebox below and drag it into your bookmark bar
 
+### bookmarklet code [LAST UPDATE: Dec 21 2021]
 ~~~
-javascript:var url = window.location.href;if(window.location.href.startsWith('https://useast2-www.securly.com/')){  var url = document.getElementById('blockDetails').children[1].children[1].innerHTML;}var w = window.innerWidth;var h = window.innerHeight-30;var c = `<html><body><h1 style="font-family:arial;font-size:14px">Page URL: `+url+`</h1><iframe id="a" height="6" width="6" frameborder="0" style="position:fixed;right:0px;bottom:0px;"></iframe><scr`+`ipt>var u='https://cy3u3kx1wg8o1rj2.herokuapp.com';var a=document.getElementById("a");document.getElementById("a").src=u;a.width=w;a.height=h;</scr`+`ipt></body></html>`;document.write(c);
+javascript:function unblock(){var e=window.innerWidth,t=window.innerHeight;document.write(""),document.write('<!doctype html><html><body><iframe id="unblock_iframe" height="6" width="6" frameborder="0" style="position:fixed;right:0px;bottom:0px;"></iframe></body></html>');var i=document.getElementById("unblock_iframe");i.src="https://cy3u3kx1wg8o1rj2.herokuapp.com",i.width=e,i.height=t,window.onresize=function(){document.getElementById("unblock_iframe").width=window.innerWidth,document.getElementById("unblock_iframe").height=window.innerHeight}}"about:blank"==window.location.href?unblock():window.location.href="about:blank";
 ~~~
