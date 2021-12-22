@@ -1,2 +1,3 @@
+//this is the same thing that is in the README, stored here just incase ?? idk
+
 javascript:function unblock(){var e=window.innerWidth,t=window.innerHeight;document.write(""),document.write('<!doctype html><html><body><iframe id="unblock_iframe" height="6" width="6" frameborder="0" style="position:fixed;right:0px;bottom:0px;"></iframe></body></html>');var i=document.getElementById("unblock_iframe");i.src="https://cy3u3kx1wg8o1rj2.herokuapp.com",i.width=e,i.height=t,window.onresize=function(){document.getElementById("unblock_iframe").width=window.innerWidth,document.getElementById("unblock_iframe").height=window.innerHeight}}"about:blank"==window.location.href?unblock():window.location.href="about:blank";
-//wip dont touch
