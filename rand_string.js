@@ -18,9 +18,9 @@ alert(getRandStr());
 /*  pre-generated:
 
 cy3u3kx1wg8o1rj2 [OLD]
-hx9e06y07oekgvq0 [CURRENT - PRINGLES]
+hx9e06y07oekgvq0 [OLD]
 ui4b9x03syw0ka1j [CURRENT - MAIN]
-ypzvq1aexoonl867
+ypzvq1aexoonl867 [CURRENT - PRINGLES]
 bmrxj5t98igyu0xx
 s36wcp57cb7ru7p4
 gn6ih7aa0i5rdih7
