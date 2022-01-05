@@ -1,22 +1,11 @@
-//main.js except it has new WIP stuff
 
-/* 
-    == HTML ==
-    <html>
-        <body>
-            <iframe id="unblock_iframe" height="6" width="6" frameborder="0" style="position:fixed;right:0px;bottom:0px;"></iframe>
-        </body>
-    </html>
-
-
-                <script>
-                var u='https://cy3u3kx1wg8o1rj2.herokuapp.com';
-                var a=document.getElementById("a");
-                document.getElementById("a").src=u;
-                a.width=w;
-                a.height=h;
-            </script>
-*/
+/*\  
+|*|   main.js except it has new WIP stuff
+|*|   actually it's not WIP anymore
+|*|   but who even cares lol
+|*|   also this comment thing is really cool
+|*|   what do I put here
+\*/ 
 
 javascript:
 function unblock() {
