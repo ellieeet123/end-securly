@@ -24,9 +24,18 @@ function unblock() {
         document.getElementById('unblock_iframe').height = window.innerHeight;        
     }
 }
+function openNewTab(url) {
+    var link = document.createElement('a');
+    link.href = url;
+    link.style.position = 'fixed';
+    link.style.top = '1000000px';
+    link.id = 'unblock_link';
+    link.target = '_blank';
+    link.click();
+}
 if (window.location.href == 'about:blank') {
     unblock();
 }
 else {
-    window.location.href = 'about:blank';
+    openNewTab('about:blank');
 }
