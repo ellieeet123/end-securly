@@ -9,8 +9,9 @@
 
 javascript:
 function element(id) {
-    return document.getElementById(id)
+    return document.getElementById(id);
 }
+
 function unblock() {
     var w = window.innerWidth;
     var h = window.innerHeight;
@@ -27,6 +28,7 @@ function unblock() {
         element('unblock_iframe').height = window.innerHeight;        
     }
 }
+
 function openNewTab(url) {
     if (element('unblock_link')) {
         element('unblock_link').click();
@@ -41,9 +43,14 @@ function openNewTab(url) {
         link.click();
     }
 }
-if (window.location.href == 'about:blank') {
-    unblock();
+
+function main() {
+    if (window.location.href == 'about:blank') {
+        unblock();
+    }
+    else {
+        openNewTab('about:blank');
+    }
 }
-else {
-    openNewTab('about:blank');
-}
+
+main();
