@@ -20,8 +20,8 @@ alert(getRandStr());
 cy3u3kx1wg8o1rj2 [OLD]
 hx9e06y07oekgvq0 [OLD]
 ui4b9x03syw0ka1j [CURRENT - MAIN]
-ypzvq1aexoonl867 [CURRENT - PRINGLES]
-bmrxj5t98igyu0xx
+ypzvq1aexoonl867 [OLD]
+bmrxj5t98igyu0xx [CURRENT - PRINGLES]
 s36wcp57cb7ru7p4
 gn6ih7aa0i5rdih7
 cc8o9ffyjh3xvrbu
