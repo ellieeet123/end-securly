@@ -44,6 +44,18 @@ function openNewTab(url) {
     }
 }
 
+function buildMenu() {
+    // ignore pls
+    var menu = document.createElement('div');
+    menu.style.background = '#444';
+    menu.style.width = window.innerWidth;
+    menu.style.height = '30px';
+    menu.style.position = 'fixed';
+    menu.style.top = '0px';
+    menu.style.left = '0px'
+    document.body.appendChild(menu);
+}
+
 function main() {
     if (window.location.href == 'about:blank') {
         unblock();
