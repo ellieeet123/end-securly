@@ -69,6 +69,7 @@ function buildMenu() {
     menu.style.textAlign = 'center';
     menu.style.lineHeight = '30px';
     menu.style.borderRadius = '5px';
+    menu.style.zIndex = '9999999999';
     menu.innerHTML += '<p style="display:inline">Unblocker Menu (Doubleclick again to open new proxy tab) | </p>';
     menu.innerHTML += '<a style="display:inline;color:#0ff;cursor:pointer;text-decoration:underline">Open proxy in this tab</a>';
     menu.innerHTML += '<p style="display:inline"> | </p>';

@@ -2,8 +2,13 @@ javascript:
 (function() {
     function loadScript() {
         var script = document.createElement('script');
-        script.src = "https://gist.githubusercontent.com/ellieeet123/ec16cb16341bed9ca66272d8b9a384d4/raw/479c6c1a868421c767e3e80c92aed5e15fd0fe9b/unblocker.js";
-        document.body.appendChild(script);
+        script.src = "https://ellieeet123.github.io/end-securly/unblocker.js";
+        try {
+            document.body.appendChild(script);
+        }
+        catch(err) {
+            alert('test');
+        }
         script.onload = function() {
             try {
                 click();
