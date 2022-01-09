@@ -91,7 +91,7 @@ function buildMenu() {
     a[0].onclick = function() { unblock(); };
     a[1].onclick = function() { openNewTab('https://' + base + '.herokuapp.com'); };
     a[2].onclick = function() { reloadFrame(); };
-    a[2].onclick = function() { document.getElementById('proxyMenu').remove();started = false };
+    a[3].onclick = function() { document.getElementById('proxyMenu').remove();started = false };
     menu.id = 'proxyMenu';
     document.body.appendChild(menu);
 }
