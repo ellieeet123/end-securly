@@ -64,6 +64,11 @@ function reloadFrame() {
     }
 }
 
+function closeMenu() {
+    document.getElementById('proxyMenu').remove();
+    started = false;
+}
+
 function buildMenu() {
     // ignore pls
     var menu = document.createElement('div');
@@ -91,7 +96,7 @@ function buildMenu() {
     a[0].onclick = function() { unblock(); };
     a[1].onclick = function() { openNewTab('https://' + base + '.herokuapp.com'); };
     a[2].onclick = function() { reloadFrame(); };
-    a[3].onclick = function() { document.getElementById('proxyMenu').remove();started = false };
+    a[3].onclick = function() { closeMenu(); };
     menu.id = 'proxyMenu';
     document.body.appendChild(menu);
 }
@@ -101,6 +106,7 @@ function main() {
         unblock();
     }
     else {
+        closeMenu();
         openNewTab('about:blank');
     }
 }
