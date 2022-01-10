@@ -1,5 +1,6 @@
 javascript:
 (function() {
+    var bookmarkletClicked;
     function loadScript() {
         document.addEventListener("securitypolicyviolation", (e) => {
             if (confirm('[ERROR]: ' + window.location.hostname + 
@@ -9,6 +10,7 @@ javascript:
                 a.href = 'about:blank';
                 a.target = '_blank';
                 a.click()
+                bookmarkletClicked = false;
             }
         });
         var script = document.createElement('script');
@@ -16,7 +18,6 @@ javascript:
         script.id = 'unblockerscript';
         document.body.appendChild(script);
     }   
-    var bookmarkletClicked;
     if (!bookmarkletClicked) {
         bookmarkletClicked = true;
         loadScript();
