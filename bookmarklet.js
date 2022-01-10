@@ -4,7 +4,7 @@ javascript:
         document.addEventListener("securitypolicyviolation", (e) => {
             if (confirm('[ERROR]: ' + window.location.hostname + 
             ' has blocked inserting the necesary script for the unblocker. Would you like to open a blank tab to run it instead? (you will have to double click the bookmarklet again.) - Full Error Report: '
-            + e)) {
+            + e.toString())) {
                 var a = document.createElement('a');
                 a.href = 'about:blank';
                 a.target = '_blank';
