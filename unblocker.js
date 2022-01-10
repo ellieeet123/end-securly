@@ -106,7 +106,9 @@ function main() {
         unblock();
     }
     else {
-        closeMenu();
+        if (element('proxyMenu')) {
+            closeMenu();
+        }
         openNewTab('about:blank');
     }
 }
