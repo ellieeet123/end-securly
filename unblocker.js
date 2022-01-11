@@ -20,7 +20,7 @@ function unblock() {
         var w = window.innerWidth;
         var h = window.innerHeight;
         var p = 'https://' + base + '.herokuapp.com';
-        var html = '<!doctype html><html><body><iframe id="unblock_iframe" height="6" width="6" frameborder="0" style="position:fixed;right:0px;bottom:0px;"></iframe></body></html>';
+        var html = '<!doctype html><html><body><iframe id="unblock_iframe" name="unblock_iframe" height="6" width="6" frameborder="0" style="position:fixed;right:0px;bottom:0px;"></iframe></body></html>';
         document.write('');
         document.write(html);
         var f = element('unblock_iframe');
