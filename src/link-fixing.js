@@ -15,14 +15,36 @@ function collectLinks(outerElement) {
     return list;
 }
 
+function collectLinksFromIframe(outerElement) {
+    try {
+        let list = []
+        for (let i = 0; i < outerElement.contentWindow.document.getElementsByTagName('a').length; i++) {
+            list.push(outerElement.contentWindow.document.getElementsByTagName('a')[i]);
+        }
+        return list;
+    } catch (e) {
+        console.log('error in collectLinksFromIframe: ' + e);
+        outerElement.style.borderStyle = 'solid';
+        outerElement.style.borderColor = 'red';
+        outerElement.style.background  = '#ff000066';
+        outerElement.style.borderWidth = '4px';
+        return [];
+    }
+}
+
 function fixLinks() {
+    let target;
     let links = collectLinks(window.document);
     let iframes = document.getElementsByTagName('iframe');
     for (let i = 0; i < iframes.length; i++) {
-        links = links.concat(collectLinks(iframes[i]));
+        links = links.concat(collectLinksFromIframe(iframes[i]));
     }
     for (let i = 0; i < links.length; i++) {
-        links[i].dataset.previous_target = links[i].target;
+        target = links[i].target
+        if (target === '') {
+            target = '_self'
+        }
+        links[i].dataset.previous_target = target;
         links[i].target = 'unblock_iframe'
     }
 }

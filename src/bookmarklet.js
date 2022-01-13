@@ -1,3 +1,11 @@
+/*\ 
+|*|  bookmarklet.js
+|*|  
+|*|  the main bookmarklet. It's main purpose
+|*|  is just to injext the main script,
+|*|  and then provide an error if it fails.
+\*/
+
 javascript:
 (function() {
     var bookmarkletClicked;

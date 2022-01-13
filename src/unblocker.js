@@ -70,20 +70,22 @@ function closeMenu() {
 }
 
 function buildMenu() {
-    // ignore pls
     var menu = document.createElement('div');
-    menu.style.background = '#444';
-    menu.style.width = (window.innerWidth - 30) + 'px';
-    menu.style.position = 'fixed';
-    menu.style.top = '15px';
-    menu.style.left = '15px'
-    menu.style.fontFamily = 'sans-serif';
-    menu.style.fontSize = '18px';
-    menu.style.color = '#fff';
-    menu.style.textAlign = 'center';
-    menu.style.lineHeight = '30px';
+    menu.style.background   = '#444';
+    menu.style.width        = (window.innerWidth - 30) + 'px';
+    menu.style.position     = 'fixed';
+    menu.style.top          = '15px';
+    menu.style.left         = '15px'
+    menu.style.fontFamily   = 'sans-serif';
+    menu.style.fontSize     = '18px';
+    menu.style.color        = '#fff';
+    menu.style.textAlign    = 'center';
+    menu.style.lineHeight   = '30px';
     menu.style.borderRadius = '5px';
-    menu.style.zIndex = '9999999999';
+    menu.style.zIndex       = '9999999999';
+    menu.style.borderStyle  = 'solid';
+    menu.style.borderWidth  = '2px';
+    menu.style.borderColor  = '#fff';
     menu.innerHTML += '<p style="display:inline">Unblocker Menu (Doubleclick again to open new proxy tab) | </p>';
     menu.innerHTML += '<a style="display:inline;color:#0ff;cursor:pointer;text-decoration:underline">Open proxy in this tab</a>';
     menu.innerHTML += '<p style="display:inline"> | </p>';
