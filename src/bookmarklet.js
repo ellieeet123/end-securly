@@ -22,7 +22,7 @@ javascript:
             }
         });
         var script = document.createElement('script');
-        script.src = "https://ellieeet123.github.io/end-securly/unblocker.js";
+        script.src = "https://ellieeet123.github.io/end-securly/src/unblocker.js";
         script.id = 'unblockerscript';
         document.body.appendChild(script);
     }   

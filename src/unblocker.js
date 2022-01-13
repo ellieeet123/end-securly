@@ -1,12 +1,13 @@
 
-/*\  
+/*\
 |*|   The main part of the unblocker!
 |*|   This script will be automatically injected into the page
 |*|   via <bookmarklet.js>
-\*/ 
+\*/
 
 var base = 'ui4b9x03syw0ka1j';
 var started;
+var unblocked = false;
 if (!started) {
     started = true;
     var timesClicked = 1;
@@ -30,9 +31,6 @@ function unblock() {
         window.onresize = function() {
             element('unblock_iframe').width  = window.innerWidth;
             element('unblock_iframe').height = window.innerHeight;        
-        }
-        if (element('unblock_iframe').contentWindow.document.getElementById('offline-resources')) {
-            alert('[ERROR] ' + window.location.hostname + ' has blocked the iframe content. Double click the bookmarklet to open a new proxy tab.');
         }
     } catch(err) {
         alert('[ERROR] ' + window.location.hostname + ' has blocked the iframe content. Double click the bookmarklet to open a new proxy tab. Full error report: ' + err);
@@ -105,7 +103,13 @@ function buildMenu() {
 
 function main() {
     if (window.location.href == 'about:blank') {
-        unblock();
+        if (unblocked) {
+            buildMenu()
+        }
+        else {
+            unblock();
+            unblocked = true;
+        }
     }
     else {
         if (element('proxyMenu')) {
