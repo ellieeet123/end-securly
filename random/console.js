@@ -6,8 +6,8 @@ var ellieeet_console_history = [];
 //  long name to hopefully prevent reusing a variable 
 //  name from a website that this would be run on. 
 (function(){
-  var historyIndex = -1;
-  var div = document.createElement('div');
+  let historyIndex = -1;
+  let div = document.createElement('div');
   div.style.position = 'fixed';
   div.style.bottom = '0px';
   div.style.left = '15px';
@@ -20,13 +20,23 @@ var ellieeet_console_history = [];
   div.style.color = '#fff';
   document.body.appendChild(div);
 
+  let output = document.createElement('div');
+  output.style.position = 'fixed';
+  output.style.bottom = '0px';
+  output.style.right = '15px';
+  output.style.background = '#000';
+  output.style.width = '400px';
+  output.style.height = '260px';
+  output.style.zIndex = '9999999999';
+  output.id = 'ellieeet_console_output';
+  output.contentEditable = false;
+  output.style.color = '#fff';
+  output.style.verticalAlign = 'bottom';
+  document.body.appendChild(output);
+
   // new version of console.log
-  var logBackup = console.log;
-  var logMessages = [];
-  console.log = function() {
-    logMessages.push.apply(logMessages, arguments);
-    logBackup.apply(console, arguments);
-    document.getElementById('ellieeet_console').textContent = logMessages[logMessages - 1];
+  console.log = function(msg) {
+    document.getElementById('ellieeet_console_output').textContent += (msg.toString() + '<br>');
   };
   window.onerror = function(message, source, lineno, colno, error) { 
     alert(`[ERROR]: ${message}\n\nline ${lineno}:${colno}\nsource: ${source}\nerror: ${error}`);
@@ -35,7 +45,7 @@ var ellieeet_console_history = [];
   window.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) { /* enter */
       event.preventDefault();
-      var command = document.getElementById('ellieeet_console').textContent;
+      let command = document.getElementById('ellieeet_console').textContent;
       ellieeet_console_history.unshift(command);
       document.getElementById('ellieeet_console').textContent = '';
       historyIndex = 0;
