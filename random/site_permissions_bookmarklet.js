@@ -1,5 +1,7 @@
-// small bookmarklet to open chrome permissions for the site you are currently visiting.
-// possibly not finished i have to do more testing
+/*\
+|*|   Ignore. This doesn't work, as chrome doesn't let you
+|*|   open URLS that start with chrome:// from links.
+\*/
 
 javascript:
 (function() {
