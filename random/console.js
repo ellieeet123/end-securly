@@ -54,7 +54,10 @@ var ellieeet_console_history = [];
   header.style.borderBottomColor = '#bbb'
   header.id = 'ellieeet_console_header';
   header.style.color = '#fff';
-  header.innerHTML = '<div style="font-size: 24px;float:right"><b>ellieeet console</b></div>'
+  header.innerHTML = `<div style="font-size: 24px;float:right">
+  <b>ellieeet console</b>
+  </div>
+  <div style="float:left"> -- [esc] to close -- <div>`;
 
   let maindiv = document.createElement('div');
   maindiv.id = 'ellieeet_console_main';
@@ -90,7 +93,10 @@ var ellieeet_console_history = [];
       
       // to do: try to allow this script to run on sites like github.com
       // where there is a security policy that prevents 'unsafe eval' 
-      e.onclick = new Function(command);
+      e.onclick = (function() {
+        let commandoutput = eval(command);
+        return commandoutput;
+      });
       let commandoutput = e.click();
       console.log(command + '<br><span style="color:#17f">-></span> ' + commandoutput)
     }
