@@ -89,15 +89,11 @@ var ellieeet_console_history = [];
       ellieeet_console_history.unshift(command);
       document.getElementById('ellieeet_console').textContent = '';
       historyIndex = 0;
-      let e = document.createElement('p');
-      
+
       // to do: try to allow this script to run on sites like github.com
       // where there is a security policy that prevents 'unsafe eval' 
-      e.onclick = (function() {
-        let commandoutput = eval(command);
-        return commandoutput;
-      });
-      let commandoutput = e.click();
+      // from being used.
+      let commandoutput = window.eval(command);
       console.log(command + '<br><span style="color:#17f">-></span> ' + commandoutput)
     }
     else if (event.keyCode === 38) { /* up arrow */
