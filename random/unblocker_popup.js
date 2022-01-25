@@ -22,7 +22,9 @@ function ellieeet_google_embed_updateSizes() {
     document.getElementById("ellieeet_google_embed_resize").style.left  = ((ellieeet_google_embed.location.x + ellieeet_google_embed.width)).toString() + 'px';
     document.getElementById("ellieeet_google_embed_resize").style.top   = ((ellieeet_google_embed.location.y + ellieeet_google_embed.height)).toString() + 'px';
     document.getElementById("ellieeet_google_embed_move").style.top = (ellieeet_google_embed.location.y).toString() + 'px';
-    document.getElementById("ellieeet_google_embed_move").style.left = (ellieeet_google_embed.location.x).toString() + 'px';;
+    document.getElementById("ellieeet_google_embed_move").style.left = (ellieeet_google_embed.location.x).toString() + 'px';
+    document.getElementById("ellieeet_google_embed_close").style.top = (ellieeet_google_embed.location.y).toString() + 'px';
+    document.getElementById("ellieeet_google_embed_close").style.left = (ellieeet_google_embed.location.x + ellieeet_google_embed.width).toString() + 'px';
 }
 
 (function(){
