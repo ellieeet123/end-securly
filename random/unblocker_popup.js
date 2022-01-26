@@ -123,13 +123,13 @@ function ellieeet_google_embed_updateSizes() {
 
     let close = document.createElement('div');
     close.style.position = 'fixed';
-    close.style.cursor = 'cursor';
+    close.style.cursor = 'pointer';
     close.style.top  = (ellieeet_google_embed.location.y).toString() + 'px';
     close.style.left = (ellieeet_google_embed.location.x + ellieeet_google_embed.width).toString() + 'px';
     close.style.height = '15px';
     close.style.width = '15px';
     close.style.zIndex = '9999999999';
-    close.style.background = 'rgba(fff, 120, 120, 0.5)';
+    close.style.background = 'rgba(255, 120, 120, 0.8)';
     close.id = 'ellieeet_google_embed_close';
     close.onclick = function() {
         document.getElementById("ellieeet_google_embed_frame").remove();
