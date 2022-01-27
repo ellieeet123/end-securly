@@ -70,9 +70,7 @@ var ellieeet_console_isShiftPressed = false;
   document.body.appendChild(maindiv);
 
   // new version of console.log
-  console.i = function(msg, style) {
-    let err = new Error();
-    let stack = err.stack.toString().split(/\r\n|\n/);
+  console.log = function(msg, style) {
     let caller_line = (new Error).stack.split("\n")[4]
     document.getElementById('ellieeet_console_output').innerHTML += (
       '<span style="font-size: 10px; float:right">' + caller_line + '</span><br>' +
@@ -82,15 +80,8 @@ var ellieeet_console_isShiftPressed = false;
     document.getElementById('ellieeet_console_output_msg').style = style;
     document.getElementById('ellieeet_console_output_msg').removeAttribute('id');
   };
-  console.log, console.info, console.debug = undefined;
 
   window.onerror = function(message, source, lineno, colno, error) {
-    if (
-    message.includes('console.log') || 
-    message.includes('console.info') || 
-    message.includes('console.debug')) {
-      
-    }
     console.log(
       `[ERROR]: ${message}<br><br>line ${lineno}:${colno}<br>source: ${source}`, 
       'background: rgba(200, 0, 0, 0.2); color: #f00; padding: 1px;'
@@ -98,7 +89,10 @@ var ellieeet_console_isShiftPressed = false;
   };
   
   window.addEventListener('keydown', function(event) {
-    if (event.keyCode === 13 && !ellieeet_console_isShiftPressed) { /* enter */
+    if (
+        event.keyCode === 13 &&
+        !ellieeet_console_isShiftPressed && 
+        document.activeElement.id === 'ellieeet_console') { /* enter */
       event.preventDefault();
       let command = document.getElementById('ellieeet_console').textContent;
       ellieeet_console_history.unshift(command);
@@ -111,12 +105,18 @@ var ellieeet_console_isShiftPressed = false;
       console.log(command + '<br><span style="color:#17f">-></span> ' + commandoutput)
     }
     else if (event.key === 'ArrowUp') {
-      historyIndex = historyIndex + 1;
       document.getElementById('ellieeet_console').textContent = ellieeet_console_history[historyIndex];
+      historyIndex = historyIndex + 1;
+      if (ellieeet_console_history[historyIndex] === undefined) {
+        historyIndex = historyIndex - 1;
+      }
     }
     else if (event.key === 'ArrowDown') {
-      historyIndex = historyIndex - 1;
       document.getElementById('ellieeet_console').textContent = ellieeet_console_history[historyIndex];
+      historyIndex = historyIndex - 1;
+      if (ellieeet_console_history[historyIndex] === undefined) {
+        historyIndex = historyIndex + 1;
+      }
     }
     else if (event.key === 'Escape') {
       document.getElementById('ellieeet_console_main').remove();
