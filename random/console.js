@@ -79,6 +79,7 @@ var ellieeet_console_isShiftPressed = false;
     );
     document.getElementById('ellieeet_console_output_msg').style = style;
     document.getElementById('ellieeet_console_output_msg').removeAttribute('id');
+    document.getElementById('ellieeet_console_output').scrollTop = document.getElementById('ellieeet_console_output').scrollHeight;
   };
 
   window.onerror = function(message, source, lineno, colno, error) {
