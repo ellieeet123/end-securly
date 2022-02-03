@@ -5,7 +5,7 @@
 |*|   via <bookmarklet.js>
 \*/
 
-var base = 'cc8o9ffyjh3xvrbu';
+var base = 'gn6ih7aa0i5rdih7';
 var started;
 var unblocked = false;
 if (!started) {
