@@ -69,6 +69,7 @@ function closeMenu() {
 
 function buildMenu() {
     var menu = document.createElement('div');
+    menu.style.all          = 'initial';
     menu.style.background   = '#444';
     menu.style.width        = (window.innerWidth - 30) + 'px';
     menu.style.position     = 'fixed';
@@ -79,7 +80,7 @@ function buildMenu() {
     menu.style.color        = '#fff';
     menu.style.textAlign    = 'center';
     menu.style.lineHeight   = '30px';
-    menu.style.borderRadius = '5px';
+    menu.style.borderRadius = '15px';
     menu.style.zIndex       = '9999999999';
     menu.style.borderStyle  = 'solid';
     menu.style.borderWidth  = '2px';
