@@ -72,6 +72,26 @@ if (window.ellieeet_console_isReady === undefined) {
     header.id = 'ellieeet_console_header';
     header.style.color = '#fff';
     header.innerHTML = `<div style="font-size: 24px;float:right"><b>ellieeet console</b></div><div style="float:left"> -- [esc] to close -- <div>`;
+    let buttonContainerContainer = document.createElement('div');
+    buttonContainerContainer.style.position = 'relative';
+    buttonContainerContainer.style.background = '#ddd';
+    buttonContainerContainer.id = 'buttonContainerContainer';
+    let buttonContainer = document.createElement('div');
+    buttonContainer.style.display = 'flex';
+    buttonContainer.style.background = '#aaa';
+    buttonContainer.id = 'buttonContainer';
+    let buttonConsole = document.createElement('div');
+    buttonConsole.style.background = '#333';
+    buttonConsole.style.width = '100px';
+    buttonConsole.style.height = '30px';
+    buttonConsole.style.left = '0px';
+    buttonConsole.style.top = '20px';
+    buttonConsole.style.position = 'relative';
+    buttonConsole.innerHTML = 'Console';
+    buttonConsole.id = 'ellieeet_console_buttons_console';
+    buttonContainerContainer.appendChild(buttonContainer);
+    buttonContainer.appendChild(buttonConsole);
+    header.appendChild(buttonContainerContainer);
     let style = document.createElement('style');
     style.innerHTML = '#ellieeet_console_output::-webkit-scrollbar {display: none;}';
     let maindiv = document.createElement('div');
@@ -82,7 +102,7 @@ if (window.ellieeet_console_isReady === undefined) {
     maindiv.appendChild(style);
     document.body.appendChild(maindiv);
     document.getElementById('ellieeet_console').focus();
-    
+
     if (!ellieeet_console_isReady) {
       ellieeet_console_isReady = true;
       // new version of console.log
@@ -114,7 +134,7 @@ if (window.ellieeet_console_isReady === undefined) {
       };
       console.warn = function(msg) {
         console.log(
-          '[WARNING]:' + msg,
+          '[WARN]: ' + msg,
           'background: rgba(200, 200, 0, 0.2); color: #ff0; padding: 1px;',
           {
             "hideSrc": true
@@ -211,6 +231,19 @@ if (window.ellieeet_console_isReady === undefined) {
           ellieeet_console_isShiftPressed = false;
         }
       });
+    }
+    // detect if the page has a security policy that disables console
+    try {
+      window.eval('void 0');
+    }
+    catch(e) {
+      console.warn(
+        location.hostname + 
+        ' seems to have a Content Security Policy that disables window.eval(). ' + 
+        'This will prevent the normal console from working, but you can still run statements from the address bar by ' + 
+        'typing [ javascript:alert("hello") ] into the address bar. You can replace the alert statement with whatever code you want to run. ' +
+        '<br><br>Full error report: ' + e
+      );
     }
   }
 })();
