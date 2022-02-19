@@ -12,7 +12,59 @@ if (window.ellieeet_console_isReady === undefined) {
 //  long name to hopefully prevent reusing a variable
 //  name from a website that this would be run on.
 (() => {
-
+  function buildOutputPage(pageName) {
+    var output = document.createElement('div');
+    output.style = {};
+    output.style.position = 'fixed';
+    output.style.top = '65px';
+    output.style.right = '0px';
+    output.style.padding = '8px';
+    output.style.background = '#1a1a1a';
+    output.style.width = '600px';
+    output.style.height = (innerHeight - 240).toString() + 'px';
+    output.style.zIndex = '9999999999';
+    output.id = 'ellieeet_console_output';
+    output.style.color = '#fff';
+    output.style.verticalAlign = 'bottom';
+    output.style.fontFamily = 'monospace';
+    output.style.overflow = 'scroll';
+    output.style.fontSize = '13px';
+    output.style.overflowWrap = 'break-word';
+    if (pageName === 'console') {
+      output.innerHTML = '';
+      return output;
+    }
+    else if (pageName === 'history') {
+      output.innerHTML = 'Coming Soon';
+      return output;
+    }
+  }
+  function makeAButton(text, pageName, id, rightDistance) {
+    let button = document.createElement('div');
+    button.style.background = '#333';
+    button.style.width = '100px';
+    button.style.height = '15px';
+    button.style.position = 'fixed';
+    button.innerHTML = text;
+    button.style.padding = '5px';
+    button.style.right = rightDistance + 'px';
+    button.style.top = '30px';
+    button.style.textAlign = 'center';
+    button.style.verticalAlign = 'middle';
+    button.id = id;
+    button.addEventListener('mouseenter', () => {
+      button.style.background = '#fff';
+      button.style.color = '#000';
+    });
+    button.addEventListener('mouseleave', () => {
+      button.style.background = '#333';
+      button.style.color = '#fff';
+    });
+    button.addEventListener('click', () => {
+      document.getElementById('ellieeet_console_output_container').innerHTML = buildOutputPage(pageName);
+    });
+    return button;
+  }
   if (window.ellieeet_console_isopen) {
     console.warn('console already open');
   }
@@ -37,24 +89,7 @@ if (window.ellieeet_console_isReady === undefined) {
     div.id = 'ellieeet_console';
     div.contentEditable = true;
     div.style.color = '#fff';
-    let output = document.createElement('div');
-    output.style = {};
-    output.style.position = 'fixed';
-    output.style.top = '65px';
-    output.style.right = '0px';
-    output.style.padding = '8px';
-    output.style.background = '#1a1a1a';
-    output.style.width = '600px';
-    output.style.height = (innerHeight - 240).toString() + 'px';
-    output.style.zIndex = '9999999999';
-    output.id = 'ellieeet_console_output';
-    output.style.color = '#fff';
-    output.style.verticalAlign = 'bottom';
-    output.style.fontFamily = 'monospace';
-    output.style.overflow = 'scroll';
-    output.style.fontSize = '13px';
-    output.style.overflowWrap = 'break-word';
-    output.innerHTML = '<br>';
+    let output = buildOutputPage('console');
     let header = document.createElement('div');
     header.style = {};
     header.style.position = 'fixed';
@@ -72,31 +107,15 @@ if (window.ellieeet_console_isReady === undefined) {
     header.id = 'ellieeet_console_header';
     header.style.color = '#fff';
     header.innerHTML = `<div style="font-size: 24px;float:right"><b>ellieeet console</b></div><div style="float:left"> -- [esc] to close -- <div>`;
-    let buttonContainerContainer = document.createElement('div');
-    buttonContainerContainer.style.position = 'relative';
-    buttonContainerContainer.style.background = '#ddd';
-    buttonContainerContainer.id = 'buttonContainerContainer';
-    let buttonContainer = document.createElement('div');
-    buttonContainer.style.display = 'flex';
-    buttonContainer.style.background = '#aaa';
-    buttonContainer.id = 'buttonContainer';
-    let buttonConsole = document.createElement('div');
-    buttonConsole.style.background = '#333';
-    buttonConsole.style.width = '100px';
-    buttonConsole.style.height = '30px';
-    buttonConsole.style.left = '0px';
-    buttonConsole.style.top = '20px';
-    buttonConsole.style.position = 'relative';
-    buttonConsole.innerHTML = 'Console';
-    buttonConsole.id = 'ellieeet_console_buttons_console';
-    buttonContainerContainer.appendChild(buttonContainer);
-    buttonContainer.appendChild(buttonConsole);
-    header.appendChild(buttonContainerContainer);
+    let consoleButton = makeAButton('Console', 'console', 'ellieeet_console_console_button', '492px');
+    let historyButton = makeAButton('History', 'history', 'ellieeet_console_history_button', '384px');
+    header.appendChild(consoleButton);
+    header.appendChild(historyButton);
     let style = document.createElement('style');
     style.innerHTML = '#ellieeet_console_output::-webkit-scrollbar {display: none;}';
     let maindiv = document.createElement('div');
     maindiv.id = 'ellieeet_console_main';
-    maindiv.appendChild(output);
+    maindiv.innerHTML += ('<span id="ellieeet_console_output_container">' + output + '</span>');
     maindiv.appendChild(div);
     maindiv.appendChild(header);
     maindiv.appendChild(style);
