@@ -13,14 +13,6 @@ if (window.ellieeet_console_isReady === undefined) {
 //  long name to hopefully prevent reusing a variable
 //  name from a website that this would be run on.
 (() => {
-  function buildOutputPage(pageName) {
-    if (pageName === 'console') {
-      return '<h1>HELLO WORLD!</h1>';
-    }
-    else if (pageName === 'history') {
-      return 'Coming Soon.';
-    }
-  }
   function makeAButton(text, pageName, id) {
     let button = document.createElement('div');
     button.style.background = '#333';
@@ -41,10 +33,40 @@ if (window.ellieeet_console_isReady === undefined) {
       button.style.background = '#333';
       button.style.color = '#fff';
     });
-    button.addEventListener('click', () => {
-      document.getElementById('ellieeet_console_output').innerHTML = buildOutputPage(pageName);
-    });
     return button;
+  }
+  function splitElement(str) {
+    /*
+      Example Usage:
+      splitElement('<p></p>')
+      would return 
+      ['<p>', '</p>']
+    */
+    var split = str.split('><');
+    return [
+      split[0] + '>',
+      '<' + split[1]
+    ]
+  }
+  function getDOM() {
+    /*
+    returns an html div element with a fancy layout of all current DOM
+    elements that aren't inside the console.
+    */
+    var elements = document.getElementById('ellieeet_console_main').querySelectorAll('*');
+    for (let i = 0; i < elements; i++) {
+      if (!(elements[i].classList.contains('ellieeet_console_element'))) {
+        elements[i].classList.add('ellieeet_console_element');
+      }
+    }
+    var all = document.querySelectorAll('*');
+    var output = '';
+    for (let i = 0; i < all.length; i++) {
+      if (!(all[i].classList.contains('ellieeet_console_element'))) {
+        output += all[i].cloneNode().outerHTML + '\n';
+      }
+    }
+    return output;
   }
   if (window.ellieeet_console_isopen) {
     console.warn('console already open');
@@ -55,7 +77,6 @@ if (window.ellieeet_console_isReady === undefined) {
     // build the main UI
     let historyIndex = -1;
     let div = document.createElement('div');
-    div.style = {};
     div.style.position = 'fixed';
     div.style.bottom = '0px';
     div.style.right = '0px';
@@ -72,7 +93,6 @@ if (window.ellieeet_console_isReady === undefined) {
     div.contentEditable = true;
     div.style.color = '#fff';
     let output = document.createElement('div');
-    output.style = {};
     output.style.position = 'fixed';
     output.style.top = '65px';
     output.style.right = '0px';
@@ -88,9 +108,11 @@ if (window.ellieeet_console_isReady === undefined) {
     output.style.overflow = 'scroll';
     output.style.fontSize = '13px';
     output.style.overflowWrap = 'break-word';
-    output.innerHTML = buildOutputPage('console');
+    // output.innerHTML = buildOutputPage('console');
+    let dom = output.cloneNode(true);
+    dom.id = 'ellieeet_console_dom';
+    dom.style.display = 'none';
     let header = document.createElement('div');
-    header.style = {};
     header.style.position = 'fixed';
     header.style.top = '0px';
     header.style.right = '0px';
@@ -108,15 +130,24 @@ if (window.ellieeet_console_isReady === undefined) {
     header.innerHTML = `<div style="font-size: 24px;float:right"><b>ellieeet console</b></div><div style="float:left; color:#c33"> x <div>`;
     let consoleButton = makeAButton('Console', 'console', 'ellieeet_console_console_button');
     consoleButton.style.right = '492px';
-    let historyButton = makeAButton('History', 'history', 'ellieeet_console_history_button');
-    historyButton.style.right = '376px';
+    consoleButton.addEventListener('click', () => {
+      document.getElementById('ellieeet_console_output').style.display = 'block';
+      document.getElementById('ellieeet_console_dom').style.display = 'none';
+    });
+    let DOMButton = makeAButton('DOM tree', 'dom', 'ellieeet_console_dom_button');
+    DOMButton.style.right = '370px';
+    DOMButton.addEventListener('click', () => {
+      document.getElementById('ellieeet_console_output').style.display = 'none';
+      document.getElementById('ellieeet_console_dom').style.display = 'block';
+    });
     header.appendChild(consoleButton);
-    header.appendChild(historyButton);
+    header.appendChild(DOMButton);
     let style = document.createElement('style');
     style.innerHTML = '#ellieeet_console_output::-webkit-scrollbar {display: none;}';
     let maindiv = document.createElement('div');
     maindiv.id = 'ellieeet_console_main';
     maindiv.appendChild(output);
+    maindiv.appendChild(dom);
     maindiv.appendChild(div);
     maindiv.appendChild(header);
     maindiv.appendChild(style);
@@ -265,5 +296,11 @@ if (window.ellieeet_console_isReady === undefined) {
         '<br><br>Full error report: ' + e
       );
     }
+    setInterval(
+      () => {
+        document.getElementById('ellieeet_console_dom').innerHTML = getDOM();
+      }, 
+      1000
+    )
   }
 })();
