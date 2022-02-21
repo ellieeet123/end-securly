@@ -7,39 +7,21 @@ if (window.ellieeet_console_isReady === undefined) {
   var ellieeet_console_isReady = false;
   var ellieeet_console_history = [];
   var ellieeet_console_isShiftPressed = false;
+  var ellieeet_console_currentTab = 'console'
   var ellieeet_console_erroroutput = '';   // sets to true when the bookmarklet is clicked the first time,
 } //                                     this is to prevent double event listeners from occuring
 //  long name to hopefully prevent reusing a variable
 //  name from a website that this would be run on.
 (() => {
   function buildOutputPage(pageName) {
-    var output = document.createElement('div');
-    output.style = {};
-    output.style.position = 'fixed';
-    output.style.top = '65px';
-    output.style.right = '0px';
-    output.style.padding = '8px';
-    output.style.background = '#1a1a1a';
-    output.style.width = '600px';
-    output.style.height = (innerHeight - 240).toString() + 'px';
-    output.style.zIndex = '9999999999';
-    output.id = 'ellieeet_console_output';
-    output.style.color = '#fff';
-    output.style.verticalAlign = 'bottom';
-    output.style.fontFamily = 'monospace';
-    output.style.overflow = 'scroll';
-    output.style.fontSize = '13px';
-    output.style.overflowWrap = 'break-word';
     if (pageName === 'console') {
-      output.innerHTML = '';
-      return output;
+      return '<h1>HELLO WORLD!</h1>';
     }
     else if (pageName === 'history') {
-      output.innerHTML = 'Coming Soon';
-      return output;
+      return 'Coming Soon.';
     }
   }
-  function makeAButton(text, pageName, id, rightDistance) {
+  function makeAButton(text, pageName, id) {
     let button = document.createElement('div');
     button.style.background = '#333';
     button.style.width = '100px';
@@ -47,7 +29,6 @@ if (window.ellieeet_console_isReady === undefined) {
     button.style.position = 'fixed';
     button.innerHTML = text;
     button.style.padding = '5px';
-    button.style.right = rightDistance + 'px';
     button.style.top = '30px';
     button.style.textAlign = 'center';
     button.style.verticalAlign = 'middle';
@@ -61,7 +42,7 @@ if (window.ellieeet_console_isReady === undefined) {
       button.style.color = '#fff';
     });
     button.addEventListener('click', () => {
-      document.getElementById('ellieeet_console_output_container').innerHTML = buildOutputPage(pageName);
+      document.getElementById('ellieeet_console_output').innerHTML = buildOutputPage(pageName);
     });
     return button;
   }
@@ -71,6 +52,7 @@ if (window.ellieeet_console_isReady === undefined) {
   else {
     window.ellieeet_console_isopen = true;
 
+    // build the main UI
     let historyIndex = -1;
     let div = document.createElement('div');
     div.style = {};
@@ -89,7 +71,24 @@ if (window.ellieeet_console_isReady === undefined) {
     div.id = 'ellieeet_console';
     div.contentEditable = true;
     div.style.color = '#fff';
-    let output = buildOutputPage('console');
+    let output = document.createElement('div');
+    output.style = {};
+    output.style.position = 'fixed';
+    output.style.top = '65px';
+    output.style.right = '0px';
+    output.style.padding = '8px';
+    output.style.background = '#1a1a1a';
+    output.style.width = '600px';
+    output.style.height = (innerHeight - 240).toString() + 'px';
+    output.style.zIndex = '9999999999';
+    output.id = 'ellieeet_console_output';
+    output.style.color = '#fff';
+    output.style.verticalAlign = 'bottom';
+    output.style.fontFamily = 'monospace';
+    output.style.overflow = 'scroll';
+    output.style.fontSize = '13px';
+    output.style.overflowWrap = 'break-word';
+    output.innerHTML = buildOutputPage('console');
     let header = document.createElement('div');
     header.style = {};
     header.style.position = 'fixed';
@@ -106,16 +105,18 @@ if (window.ellieeet_console_isReady === undefined) {
     header.style.borderBottomColor = '#bbb'
     header.id = 'ellieeet_console_header';
     header.style.color = '#fff';
-    header.innerHTML = `<div style="font-size: 24px;float:right"><b>ellieeet console</b></div><div style="float:left"> -- [esc] to close -- <div>`;
-    let consoleButton = makeAButton('Console', 'console', 'ellieeet_console_console_button', '492px');
-    let historyButton = makeAButton('History', 'history', 'ellieeet_console_history_button', '384px');
+    header.innerHTML = `<div style="font-size: 24px;float:right"><b>ellieeet console</b></div><div style="float:left; color:#c33"> x <div>`;
+    let consoleButton = makeAButton('Console', 'console', 'ellieeet_console_console_button');
+    consoleButton.style.right = '492px';
+    let historyButton = makeAButton('History', 'history', 'ellieeet_console_history_button');
+    historyButton.style.right = '376px';
     header.appendChild(consoleButton);
     header.appendChild(historyButton);
     let style = document.createElement('style');
     style.innerHTML = '#ellieeet_console_output::-webkit-scrollbar {display: none;}';
     let maindiv = document.createElement('div');
     maindiv.id = 'ellieeet_console_main';
-    maindiv.innerHTML += ('<span id="ellieeet_console_output_container">' + output + '</span>');
+    maindiv.appendChild(output);
     maindiv.appendChild(div);
     maindiv.appendChild(header);
     maindiv.appendChild(style);
