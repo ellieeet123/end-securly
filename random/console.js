@@ -225,15 +225,20 @@ if (window.ellieeet_console_isReady === undefined) {
         document.getElementById('ellieeet_console_output').scrollTop = document.getElementById('ellieeet_console_output').scrollHeight;
       };
       window.addEventListener('keydown', function(event) {
+        console.log('keydown event');
+        console.log(event.key);
+        console.log(ellieeet_console_isShiftPressed);
+        console.log(document.activeElement.id);
+        // console.log(document.getElementById('ellieeet_console').textContent);
         if (
-            event.key === 'Enter' &&
-            !ellieeet_console_isShiftPressed && 
-            document.activeElement.id === 'ellieeet_console' &&
-            document.getElementById('ellieeet_console').textContent !== '') {
+          event.key === 'Enter' &&
+          !ellieeet_console_isShiftPressed &&
+          document.activeElement.id === 'ellieeet_console'
+        ) {
           event.preventDefault();
-          let command = document.getElementById('ellieeet_console').textContent;
+          let command = document.getElementById('ellieeet_console').innerText;
           ellieeet_console_history.unshift(command);
-          document.getElementById('ellieeet_console').textContent = '';
+          document.getElementById('ellieeet_console').innerText = '';
           historyIndex = 0;
           // to do: try to allow this script to run on sites like github.com
           // where there is a security policy that prevents 'unsafe eval' 
@@ -298,7 +303,9 @@ if (window.ellieeet_console_isReady === undefined) {
     }
     setInterval(
       () => {
-        document.getElementById('ellieeet_console_dom').innerHTML = getDOM();
+        if (ellieeet_console_isopen) {
+          document.getElementById('ellieeet_console_dom').innerHTML = getDOM();
+        }
       }, 
       1000
     )
