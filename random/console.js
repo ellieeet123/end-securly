@@ -54,7 +54,7 @@ if (window.ellieeet_console_isReady === undefined) {
     elements that aren't inside the console.
     */
     var elements = document.getElementById('ellieeet_console_main').querySelectorAll('*');
-    for (let i = 0; i < elements; i++) {
+    for (let i = 0; i < elements.length; i++) {
       if (!(elements[i].classList.contains('ellieeet_console_element'))) {
         elements[i].classList.add('ellieeet_console_element');
       }
@@ -225,20 +225,16 @@ if (window.ellieeet_console_isReady === undefined) {
         document.getElementById('ellieeet_console_output').scrollTop = document.getElementById('ellieeet_console_output').scrollHeight;
       };
       window.addEventListener('keydown', function(event) {
-        console.log('keydown event');
-        console.log(event.key);
-        console.log(ellieeet_console_isShiftPressed);
-        console.log(document.activeElement.id);
-        // console.log(document.getElementById('ellieeet_console').textContent);
         if (
           event.key === 'Enter' &&
           !ellieeet_console_isShiftPressed &&
-          document.activeElement.id === 'ellieeet_console'
+          document.activeElement.id === 'ellieeet_console' &&
+          document.getElementById('ellieeet_console').textContent !== ''
         ) {
           event.preventDefault();
-          let command = document.getElementById('ellieeet_console').innerText;
+          let command = document.getElementById('ellieeet_console').textContent;
           ellieeet_console_history.unshift(command);
-          document.getElementById('ellieeet_console').innerText = '';
+          document.getElementById('ellieeet_console').textContent = '';
           historyIndex = 0;
           // to do: try to allow this script to run on sites like github.com
           // where there is a security policy that prevents 'unsafe eval' 
@@ -304,7 +300,7 @@ if (window.ellieeet_console_isReady === undefined) {
     setInterval(
       () => {
         if (ellieeet_console_isopen) {
-          document.getElementById('ellieeet_console_dom').innerHTML = getDOM();
+          document.getElementById('ellieeet_console_dom').innerText = getDOM();
         }
       }, 
       1000
