@@ -8,9 +8,11 @@
 
 javascript:
 (() => {
+    window.bookmarkletVersion = 1.1; // this will be accessed by the injected script
     document.addEventListener("securitypolicyviolation", err => {
         // error message if the site the user is trying to run the script
         // on a site that has a security policy disabling foreign scripts.
+        document.querySelector('#_chicken_wing_').remove(); // delete script element
         if (
             confirm(
                 '[ERROR]: ' + window.location.hostname + 
@@ -26,7 +28,7 @@ javascript:
             popupLink.href = 'about:blank';
             popupLink.target = '_blank';
             popupLink.click();
-            bookmarkletClicked = false;
+            popupLink.remove();
         }
     });
     // check if the unblocker script already exists
