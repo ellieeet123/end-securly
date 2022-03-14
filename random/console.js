@@ -53,19 +53,29 @@ if (window.ellieeet_console_isReady === undefined) {
     returns an html div element with a fancy layout of all current DOM
     elements that aren't inside the console.
     */
+   // mark all elements that are part of the console
     var elements = document.getElementById('ellieeet_console_main').querySelectorAll('*');
     for (let i = 0; i < elements.length; i++) {
       if (!(elements[i].classList.contains('ellieeet_console_element'))) {
         elements[i].classList.add('ellieeet_console_element');
       }
     }
-    var all = document.querySelectorAll('*');
+    document.getElementById('ellieeet_console_main').classList.add('ellieeet_console_element');
+    // actually get the DOM
+    var all = document.documentElement.outerHTML;
+    var consolestart = all.indexOf('<!--ellieeet_console_start-->');
+    var consoleend = all.indexOf('<!--ellieeet_console_end-->') + 28;
+    var firstStr = all.substring(0, consolestart);
+    var secondStr = all.substring(consoleend, all.length - 1);
     var output = '';
+    /*
     for (let i = 0; i < all.length; i++) {
       if (!(all[i].classList.contains('ellieeet_console_element'))) {
         output += all[i].cloneNode().outerHTML + '\n';
       }
     }
+    */
+    output = firstStr + '<br>' + secondStr;
     return output;
   }
   if (window.ellieeet_console_isopen) {
@@ -151,6 +161,12 @@ if (window.ellieeet_console_isReady === undefined) {
     maindiv.appendChild(div);
     maindiv.appendChild(header);
     maindiv.appendChild(style);
+    // adds a comment before and after the console so that it
+    // can be found during DOM parsing (in getDOM function)
+    maindiv.innerHTML = 
+    '<!--ellieeet_console_start-->' + 
+    maindiv.innerHTML + 
+    '<!--ellieeet_console_end-->';
     document.body.appendChild(maindiv);
     document.getElementById('ellieeet_console').focus();
 
@@ -293,7 +309,7 @@ if (window.ellieeet_console_isReady === undefined) {
         location.hostname + 
         ' seems to have a Content Security Policy that disables window.eval(). ' + 
         'This will prevent the normal console from working, but you can still run statements from the address bar by ' + 
-        'typing [ javascript:alert("hello") ] into the address bar. You can replace the alert statement with whatever code you want to run. ' +
+        'typing `javascript:alert("hello")` into the address bar. You can replace the alert statement with whatever code you want to run. ' +
         '<br><br>Full error report: ' + e
       );
     }

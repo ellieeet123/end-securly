@@ -5,29 +5,48 @@
 |*|   via <bookmarklet.js>
 \*/
 
-var base = 'hrqa6iy6j6hn4fjm';
-var started;
-var unblocked = false;
-if (!started) {
-    started = true;
+if (!unblocker) {
+    var unblocker = {}; // a main variable that will hold all other functions
+    unblocker.base      = 'hrqa6iy6j6hn4fjm';
+    unblocker.started   = undefined;
+    unblocker.unblocked = false;
+}
+if (!unblocker.started) {
+    unblocker.started = true;
     var timesClicked = 1;
 }
+
 function element(id) {
     return document.getElementById(id);
 }
 
 function unblock() {
     try {
-        var w = window.innerWidth;
-        var h = window.innerHeight;
-        var p = 'https://' + base + '.herokuapp.com';
-        var html = '<!doctype html><html><body><iframe id="unblock_iframe" name="unblock_iframe" height="6" width="6" frameborder="0" style="position:fixed;right:0px;bottom:0px;"></iframe></body></html>';
-        document.write('');
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        var url = 'https://' + base + '.herokuapp.com';
+        var html = ''
+        // this is a weird way of writing html but it works lol
+        +'<html>'
+        +    '<body>'
+        +        '<style>'
+        +            'iframe {'
+        +                'position: fixed;'
+        +                'right: 0px;'
+        +                'top: 0px;'
+        +            '}'
+        +        '</style>'
+        +        '<iframe id="unblock_iframe" '
+        +        'name="unblock_iframe" '
+        +        'height="10" width="10" frameborder="0" src="https://ellieeet123.github.io"'
+        +        '></iframe>'
+        +    '</body>'
+        +'</html>';
         document.write(html);
-        var f = element('unblock_iframe');
-        f.src = p;
-        f.width = w;
-        f.height = h;
+        var frame = element('unblock_iframe');
+        frame.src = url;
+        frame.width = width;
+        frame.height = height;
         window.onresize = function() {
             element('unblock_iframe').width  = window.innerWidth;
             element('unblock_iframe').height = window.innerHeight;        
@@ -103,7 +122,7 @@ function buildMenu() {
 }
 
 function main() {
-    if (window.location.href == 'about:blank') {
+    if (window.location.href === 'about:blank') {
         if (unblocked) {
             buildMenu()
         }
@@ -122,11 +141,24 @@ function main() {
 
 // runs whenever the bookmarklet is clicked
 function click() {
-    if (timesClicked == 1 && window.location.href != 'about:blank') {
+    if (timesClicked === 1 && window.location.href !== 'about:blank') {
         buildMenu();
         timesClicked++;
     }
     else {
         main();
+    }
+}
+
+if (window.bookmarkletVersion !== 1.1) {
+    if (
+        confirm(
+            'There is a new version of the bookmarklet available. ' +
+            'To install it, press OK, then copy all of the code below ' +
+            '"bookmarklet code (last updated...)" and replace your current ' +
+            'bookmarklet with that new code.'
+        )
+    ) {
+        openNewTab('https://github.com/ellieeet123/end-securly#bookmarklet-code-last-update-09-mar-2022');
     }
 }
