@@ -7,7 +7,7 @@
 |*|   via <bookmarklet.js>
 \*/
 
-var base = 'x5qle09digpcxpuo';
+var base = 'corrosion14';
 var started;
 var unblocked = false;
 if (!started) {
